@@ -1,5 +1,6 @@
 import fruits, argparse
 
+
 FruitArg = argparse.ArgumentParser(
     prefix_chars='-'
 )
@@ -17,7 +18,7 @@ FruitArg.add_argument('-shape',
 FruitArg.add_argument(
     '-sweet',
     required=True,
-    type=bool,
+    choices= ['True', 'False'],
     help="Is the fruit sweet? Requires boolean True or False"
 )
 
@@ -28,7 +29,7 @@ FruitArg.add_argument(
     help="The colour of the fruit"
 )
 
-FruitArg.parse_args()
+arg = FruitArg.parse_args()
 
-newFruit = fruits.myFruit("","","","")
-fruits.printFruit(newFruit)
+fruit = fruits.myFruit(arg.name, arg.shape, arg.sweet, arg.colour)
+fruits.printFruit(fruit)
